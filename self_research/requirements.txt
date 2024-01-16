@@ -8,4 +8,11 @@ datetime
 cython
 torch
 torchvision 
+<<<<<<< HEAD
 torchaudio
+=======
+torchaudio
+TA-Lib
+tensorflow
+backtrader
+>>>>>>> cc80f223 (update packages)
