@@ -38,8 +38,6 @@ def get_basic_info(market, security_type, host='127.0.0.1', port=11111):
     quote_ctx.close()  # 结束后记得关闭当条连接，防止连接条数用尽
     return data
 
-
-
  #%%
 for market in market_lst:
     for security in security_type_lst:
@@ -52,19 +50,10 @@ for market in market_lst:
 
 
 #%%
-quote_ctx = OpenQuoteContext(host='127.0.0.1', port=11111)
-ret, data = quote_ctx.get_stock_basicinfo(Market.US, SecurityType.STOCK)
-quote_ctx.close()
-
-
-
-#%%
 """ Obtain minute time series of HS """
 #Get the HS code:
 US_IDX_lst = pd.read_csv("US_IDX_listing_info.csv").iloc[:,1:] # From which we know that the code for SP500 is US..SPX
 HK_IDX_lst = pd.read_csv("HK_IDX_listing_info.csv").iloc[:,1:] # From which we know that the code for HS Index is HK.800000
-
-
 
 #%% """ Obtain minute time series of sp500 """
 def fetch_kline_data(symbol, start_date, end_date, max_count=5, frequency = KLType.K_DAY):
@@ -106,7 +95,6 @@ def fetch_kline_data(symbol, start_date, end_date, max_count=5, frequency = KLTy
     quote_ctx.close()
     return combined_df
 
-
 # %%
 D_df = fetch_kline_data('HK.800000', '2019-01-17', '2024-01-17', max_count=1000, frequency = KLType.K_DAY)
 if D_df is not None:
@@ -116,6 +104,4 @@ if D_df is not None:
 M_df = fetch_kline_data('HK.800000', '2019-01-17', '2024-01-17', max_count=1000, frequency = KLType.K_1M)
 if M_df is not None:
     M_df.to_csv("Processed_data/HK.800000_K.1M_17Jan22_17Jan24.csv")
-# %%
 
-# %%
